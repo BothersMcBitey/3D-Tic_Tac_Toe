@@ -97,8 +97,35 @@ public class GameController : MonoBehaviour {
 			}
 		}
 		//check corners diagonal
-
-
+		for (int x = 0; x < 3; x += 2) {
+			for (int y = 0; y < 3; y += 2) {
+				if (cellStates [x, y, 0] == currentPlayer) {
+					if (cellStates [1, y, 1] == currentPlayer && cellStates [(x == 0 ? 2:0), y, 2] == currentPlayer) {
+						winningMove [0] = new Vector3 (x, y, 0);
+						winningMove [1] = new Vector3 (1, y, 1);
+						winningMove [2] = new Vector3 ((x == 0 ? 2:0), y, 2);
+						return true;
+					} else if (cellStates [x, 1, 1] == currentPlayer && cellStates [x, (y == 0 ? 2:0), 2] == currentPlayer) {
+						winningMove [0] = new Vector3 (x, y, 0);
+						winningMove [1] = new Vector3 (x, 1, 1);
+						winningMove [2] = new Vector3 (x, (y == 0 ? 2:0), 2);
+						return true;
+					}
+				}
+			}
+		}
+		for (int z = 0; z < 3; z += 2) {
+			for (int y = 0; y < 3; y += 2) {
+				if (cellStates [0, y, z] == currentPlayer) {
+					if (cellStates [1, 1, z] == currentPlayer && cellStates [2, (y == 0 ? 2 : 0), z] == currentPlayer) {
+						winningMove [0] = new Vector3 (0, y, z);
+						winningMove [1] = new Vector3 (1, 1, z);
+						winningMove [2] = new Vector3 (2, (y == 0 ? 2 : 0), z);
+						return true;
+					}
+				}
+			}
+		}
 		//check centers horizontal
 		for(int y = 0; y < 3; y+=2){
 			if (cellStates [1, y, 1] == currentPlayer) {
