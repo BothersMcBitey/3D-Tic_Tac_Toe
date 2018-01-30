@@ -46,6 +46,10 @@ public class GameController : MonoBehaviour {
 		}
 	}		
 
+	public void RestartGame(){
+		Debug.Log ("Restart");
+	}
+
 	public bool MoveMade(CellBehaviour cell, Vector3 pos){
 		Debug.Log ("Moving");
 		Debug.Log ("v: " + cell.ownerID + ", r: " + cell.isOwned ());
